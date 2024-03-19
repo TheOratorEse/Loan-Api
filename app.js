@@ -10,7 +10,12 @@ const staffData = JSON.parse(fs.readFileSync('staffs.json', 'utf8'));
 const loansData = JSON.parse(fs.readFileSync('loans.json', 'utf8'));
 
 // Secret key for JWT token
-const secretKey = 'your_secret_key';
+const secretKey = jwt.sign({}, 'ud4738dg983e90jw20d239d3d8gd389gf983', {
+    algorithm: 'HS256',
+    expiresIn: '1h' // Set the token expiration time
+  });
+  
+  console.log('Secret Key:', secretKey);
 
 // Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
